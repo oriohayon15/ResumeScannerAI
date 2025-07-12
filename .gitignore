@@ -1,0 +1,15 @@
+# Node modules
+client/node_modules/
+
+# Python virtual environment
+server/venv/
+
+# Build files
+dist/
+build/
+
+# Logs
+*.log
+
+# System
+.DS_Store
