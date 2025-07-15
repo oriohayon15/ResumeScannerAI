@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ml.pdf_parser import extract_text_from_pdf
 from ml.preprocesing import preprocess_text
+from ml.tfidf_matcher import calculate_similarity
 
 match_blueprint = Blueprint('match', __name__)
 
@@ -10,10 +11,17 @@ def extract_text():
         return jsonify({"error": "No Resume File Uploaded"}), 400
     
     resume_pdf = request.files["resume"]
+    job_description = request.form.get("job")
 
-    raw_text = extract_text_from_pdf(resume_pdf)
+    if not job_description:
+        return jsonify({"error": "No Job Application Uploaded"}), 400
 
-    clean_text = preprocess_text(raw_text)
+    resume_raw_text = extract_text_from_pdf(resume_pdf)
+    resume_clean_text = preprocess_text(resume_raw_text)
+
+    job_clean_text = preprocess_text(job_description)
+
+    match_score = calculate_similarity(resume_clean_text, job_clean_text)
     
-    return jsonify({"text": clean_text})
+    return jsonify({"Your Match Score: ": f"{match_score}/100"})
 
