@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ml.pdf_parser import extract_text_from_pdf
 from ml.preprocesing import preprocess_text
-from ml.tfidf_matcher import calculate_similarity, final_match_score, keyword_match_score, extract_job_keywords
+from ml.tfidf_matcher import final_match_score, keyword_match_score, extract_job_keywords, semantic_match_score
 
 match_blueprint = Blueprint('match', __name__)
 
