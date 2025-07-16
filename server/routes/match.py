@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ml.pdf_parser import extract_text_from_pdf
 from ml.preprocesing import preprocess_text
-from ml.tfidf_matcher import calculate_similarity
+from ml.tfidf_matcher import calculate_similarity, final_match_score, keyword_match_score, extract_job_keywords
 
 match_blueprint = Blueprint('match', __name__)
 
@@ -21,7 +21,7 @@ def extract_text():
 
     job_clean_text = preprocess_text(job_description)
 
-    match_score = calculate_similarity(resume_clean_text, job_clean_text)
+    match_score = final_match_score(resume_clean_text, job_clean_text)
     
     return jsonify({"Your Match Score: ": f"{match_score}/100"})
 
