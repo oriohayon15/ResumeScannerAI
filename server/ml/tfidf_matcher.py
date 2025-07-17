@@ -17,10 +17,11 @@ def extract_job_keywords(job_application, top_n=20):
 def keyword_match_score(resume, job_keywords):
     resume_words = set(resume.split())
     matched_keywords = [kw for kw in job_keywords if kw in resume_words]
+    unmatched_keywords = [kw for kw in job_keywords if kw not in resume_words]
     if not job_keywords:
         return 0.0, []
     score = (len(matched_keywords) / len(job_keywords)) * 100
-    return round(score, 2), matched_keywords
+    return round(score, 2), matched_keywords, unmatched_keywords
 
 def semantic_match_score(resume_text, job_text):
     resume_embedding = model.encode(resume_text, convert_to_tensor=True)
@@ -29,26 +30,36 @@ def semantic_match_score(resume_text, job_text):
     return round(score * 100, 2)
 
 def inflate_score(score):
+    gap = 100 - score
+
     if score < 30:
-        return min(score * 2.2, 70)  # Give a big boost, but cap at 70
+        # fill half the gap for very low scores
+        return score + gap * 0.60
     elif score < 60:
-        return min(score * 1.6, 85)  # Moderate boost
+        # fill 30% of the gap for mid–low scores
+        return score + gap * 0.45
     elif score < 80:
-        return min(score * 1.15, 95)  # Small boost
+        # fill 15% of the gap for mid–high scores
+        return score + gap * 0.25
     else:
-        return min(score, 100)       # Cap at 100, no boost
+        # tiny boost (or none) for already high scores
+        return score + gap * 0.05
 
 def final_match_score(resume, job_application):
     job_keywords = extract_job_keywords(job_application)
-    keyword_score, matched_keywords = keyword_match_score(resume, job_keywords)
+    keyword_score, matched_keywords, unmatched_keywords = keyword_match_score(resume, job_keywords)
     semantic_score = semantic_match_score(resume, job_application)
 
-    combined_score = round((0.9 * semantic_score + 0.1 * keyword_score), 2)
+    combined_score = round((0.85 * semantic_score + 0.15 * keyword_score), 2)
 
     inflated_score = inflate_score(combined_score)
 
     return {
-        "Match Score": inflated_score
+        "Match Score": inflated_score,
+        "Suggested Keywords to add": unmatched_keywords,
+        "Matched Keywords": matched_keywords,
+        "key Word score": keyword_score,
+        "Semantic score": semantic_score
     }
 
 
