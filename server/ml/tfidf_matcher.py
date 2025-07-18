@@ -33,17 +33,22 @@ def inflate_score(score):
     gap = 100 - score
 
     if score < 30:
-        # fill half the gap for very low scores
-        return score + gap * 0.60
+        # very low: only 25% of the headroom
+        factor = 0.25
+    elif score < 40:
+        # low: a bit more, but still modest
+        factor = 0.35
     elif score < 60:
-        # fill 30% of the gap for mid–low scores
-        return score + gap * 0.45
+        # middle: big rescue—60% of the headroom
+        factor = 0.55
     elif score < 80:
-        # fill 15% of the gap for mid–high scores
-        return score + gap * 0.25
+        # good: gentle lift—25% of the headroom
+        factor = 0.25
     else:
-        # tiny boost (or none) for already high scores
-        return score + gap * 0.05
+        # excellent: almost no lift
+        factor = 0.05
+
+    return score + gap * factor
 
 def final_match_score(resume, job_application):
     job_keywords = extract_job_keywords(job_application)
