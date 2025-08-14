@@ -46,7 +46,21 @@ const ResumeUpload = () => {
     }
 
     return (
-        <div>Upload your resume (PDF)</div>
+        <div>
+            <p>Upload your resume (PDF)</p>
+            <input type='file' accept='.pdf' onChange={handleFileChange}/>
+
+            {/* Show filename & size if file is selected */}
+            {file && (<p> Selected: {file.name} ({(file.size / (1024 * 1024)).toFixed(2)} MB)</p>)}
+
+            {/* Show error message if one */}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+
+            <button onClick={handleUpload} disabled={uploading}>
+                {uploading ? "Uploading..." : "Upload & Analyze"}
+            </button>
+        </div>
+
     );
 };
 
