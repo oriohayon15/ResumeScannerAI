@@ -1,18 +1,47 @@
 import React, { useState } from 'react';
 
-const UPLOAD_URL = "http://localhost:5000/extract";
+const UPLOAD_URL = "http://127.0.0.1:5000/extract";
+const MAX_SIZE_MB = 10; 
 
 const ResumeUpload = () => {
 
-    const [file, setFile] = useState()
+    const [file, setFile] = useState(null)
     const [error, setError] = useState("")
     const [uploading, setUploading] = useState(false)
 
     const handleFileChange = (event) => {
+        //get first file from the inputs
+        const chosen = event.target.files && event.target.files[0];
 
+        //return an error if could not find file
+        if (!chosen) {
+            setError("No file selected.");
+            setFile(null);
+            return
+        }
+
+        //makes sure only pdf documents work
+        const nameLower = chosen.name.toLowerCase();
+        if (!nameLower.endsWith(".pdf")) {
+            setError("PDF Documents Only (.pdf).");
+            setFile(null)
+            return;
+        }
+
+        //size check
+        const maxBytes = MAX_SIZE_MB * 1024 * 1024;
+        if (chosen.size > maxBytes) {
+            setError(`File to large must be below ${MAX_SIZE_MB} MB.`);
+            setFile(null)
+            return
+        }
+        
+        //Once it passes all checks will be set to no error and the file will be set
+        setError("");
+        setFile(chosen);
     }
 
-    const handleUploading = () => {
+    const handleUpload = () => {
 
     }
 
