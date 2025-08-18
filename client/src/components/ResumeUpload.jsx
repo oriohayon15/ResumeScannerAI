@@ -56,7 +56,7 @@ const ResumeUpload = () => {
         //Building form data 
         const form = new FormData();
         form.append("resume", file);
-        form.append("job", "temp job description") //temp hardcoded 
+        form.append("job", jobDescription) 
 
         //sending the form to the backend
         axios.post(UPLOAD_URL, form, {
