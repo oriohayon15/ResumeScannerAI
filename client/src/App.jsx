@@ -10,8 +10,8 @@ function App() {
     <>
       <div>
       <h1>Resume Analyzer</h1>
-      <ResumeUpload jobDescription={jobDescription} />
       <ApplicationInput value={jobDescription} onChange={setJobDescription} />
+      <ResumeUpload jobDescription={jobDescription} />
       </div>
     </>
   )
