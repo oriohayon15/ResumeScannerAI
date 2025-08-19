@@ -78,7 +78,7 @@ const ResumeUpload = ({ jobDescription }) => {
     }
 
     return (
-        <div className="flex-1 p-8 flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+        <div className="flex-1 p-8 flex items-center justify-center min-h-screen bg-gradient-to-br">
             <div className="w-full max-w-2xl">
                 <input type='file' accept='.pdf' onChange={handleFileChange} className="hidden" id="file-input"/>
                 

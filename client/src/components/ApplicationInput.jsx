@@ -3,9 +3,9 @@ import { FileText } from 'lucide-react';
 
 const ApplicationInput = ({value, onChange}) => {
     return (
-            <div className="flex-1 p-8 flex items-center justify-center min-h-screen bg-gradient-to-bl from-gray-50 to-gray-100">
+            <div className="flex-1 p-8 flex items-center justify-center min-h-screen bg-gradient-to-bl ">
                 <div className="w-full max-w-2xl">
-                    <div className="relative w-full h-96 rounded-3xl border-2 border-gray-300 bg-white hover:border-blue-400 hover:bg-blue-50 hover:scale-105 hover:shadow-xl transition-all duration-300">
+                    <div className="relative w-full h-120 rounded-3xl border-2 border-gray-300 bg-white hover:border-blue-400 hover:bg-blue-50 hover:scale-105 hover:shadow-xl transition-all duration-300">
                         <div className="p-6 pb-4">
                             <div className="flex items-center space-x-3">
                                 <div className="p-3 rounded-full bg-white shadow-lg">
@@ -17,7 +17,7 @@ const ApplicationInput = ({value, onChange}) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="px-6 pb-6 h-72">
+                        <div className="px-6 pb-6 h-90">
                             <textarea
                                 value={value}
                                 onChange={(e) => onChange(e.target.value)}

@@ -11,10 +11,10 @@ function App() {
       <div>
       <h1>ResumeScannerAI</h1>
       <div class='flex'>
-          <div class='w-1/2 p-4'>
+          <div class='w-1/2 p-6'>
             <ResumeUpload jobDescription={jobDescription} />
           </div>
-          <div class='w-1/2 p-4'>
+          <div class='w-1/2 p-6'>
             <ApplicationInput value={jobDescription} onChange={setJobDescription} />
           </div>
       </div>
