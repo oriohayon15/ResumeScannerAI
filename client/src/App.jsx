@@ -9,9 +9,15 @@ function App() {
   return (
     <>
       <div>
-      <h1>Resume Analyzer</h1>
-      <ApplicationInput value={jobDescription} onChange={setJobDescription} />
-      <ResumeUpload jobDescription={jobDescription} />
+      <h1>ResumeScannerAI</h1>
+      <div class='flex'>
+          <div class='w-1/2 p-4'>
+            <ResumeUpload jobDescription={jobDescription} />
+          </div>
+          <div class='w-1/2 p-4'>
+            <ApplicationInput value={jobDescription} onChange={setJobDescription} />
+          </div>
+      </div>
       </div>
     </>
   )
