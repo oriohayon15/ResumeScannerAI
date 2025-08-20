@@ -4,7 +4,7 @@ import axios from 'axios';
 const UPLOAD_URL = "http://127.0.0.1:5000/extract";
 const MAX_SIZE_MB = 10; 
 
-const ResumeUpload = ({ jobDescription }) => {
+const ResumeUpload = ({ jobDescription, onResult  }) => {
 
     const [file, setFile] = useState(null)
     const [error, setError] = useState("")
@@ -67,6 +67,7 @@ const ResumeUpload = ({ jobDescription }) => {
         })
         .then((res) => {
             console.log(res.data);
+            onResult?.(res.data);
         })
         .catch((err) => {
             setError("Upload failed. Please try again.");
