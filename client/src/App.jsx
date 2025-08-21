@@ -7,6 +7,7 @@ import ScoreResults from './components/scoreResults'
 function App() {
   const [jobDescription, setJobDescription] = useState("");
   const [result, setResult] = useState(null); 
+  console.log("App result:", result);
 
   return (
     <>
@@ -19,7 +20,9 @@ function App() {
           <div class='w-1/2 p-6'>
             <ApplicationInput value={jobDescription} onChange={setJobDescription} />
           </div>
-          <ScoreResults score={result} />
+          <div className="p-6">
+            <ScoreResults results={result} />
+          </div>
       </div>
       </div>
     </>

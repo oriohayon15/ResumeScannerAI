@@ -1,6 +1,7 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer, util
+from flask import jsonify
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
@@ -61,10 +62,7 @@ def final_match_score(resume, job_application):
 
     return {
         "Match Score": inflated_score,
-        "Suggested Keywords to add": unmatched_keywords,
-        "Matched Keywords": matched_keywords,
-        "key Word score": keyword_score,
-        "Semantic score": semantic_score
+        "Suggested Keywords to add": unmatched_keywords
     }
 
 
