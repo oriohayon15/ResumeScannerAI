@@ -21,7 +21,7 @@ def extract_text():
 
     job_clean_text = preprocess_text(job_description)
 
-    match_score = final_match_score(resume_clean_text, job_clean_text)
+    result = final_match_score(resume_clean_text, job_clean_text)
     
-    return jsonify({"Your Match Score: ": f"{match_score}/100"})
+    return jsonify(result), 200
 

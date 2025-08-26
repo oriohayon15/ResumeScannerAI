@@ -61,8 +61,8 @@ def final_match_score(resume, job_application):
     inflated_score = inflate_score(combined_score)
 
     return {
-        "Match Score": inflated_score,
-        "Suggested Keywords to add": unmatched_keywords
+        "match_score": inflated_score,
+        "suggested_keywords": unmatched_keywords
     }
 
 
