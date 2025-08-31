@@ -20,10 +20,10 @@ function App() {
           <div class='w-1/2 p-6'>
             <ApplicationInput value={jobDescription} onChange={setJobDescription} />
           </div>
-          <div className="p-6">
+      </div>
+      <div className="p-6">
             <ScoreResults results={result} />
           </div>
-      </div>
       </div>
     </>
   )

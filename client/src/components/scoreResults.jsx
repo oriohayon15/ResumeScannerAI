@@ -29,23 +29,85 @@ const ScoreResults = ({ results }) => {
     keywords = keywords.split(',').map(s => s.trim()).filter(Boolean);
   }
 
-  return (
-    <div className="p-4 rounded-lg border">
-      <h2 className="text-xl font-semibold mb-2">Match Score</h2>
-      <p className="text-2xl mb-4">
-        {typeof numeric === 'number' ? `${numeric.toFixed(2)}/100` : 'N/A'}
-      </p>
+  const score = typeof numeric === 'number' ? numeric : 0;
+  const radius = 80;
+  const strokeWidth = 8;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDasharray = circumference;
+  const strokeDashoffset = circumference - (score / 100) * circumference;
 
-      <h3 className="text-lg font-medium mb-1">Suggested Keywords to Add</h3>
-      {Array.isArray(keywords) && keywords.length > 0 ? (
-        <ul className="list-disc ml-6">
-          {keywords.map((kw, i) => (
-            <li key={i}>{kw}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No missing keywords 🎉</p>
-      )}
+  return (
+    <div className="p-6 bg-gradient-to-t from-gray-50 to-gray-100">
+      <div className="max-w-3xl mx-auto">
+        <div className="bg-white/50 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            
+            {/* Score Circle */}
+            <div className="flex flex-col items-center">
+              <div className="relative w-32 h-32 mb-3">
+                <svg className="transform -rotate-90 w-full h-full" viewBox="0 0 140 140">
+                  {/* Background circle */}
+                  <circle
+                    cx="70"
+                    cy="70"
+                    r={radius * 0.7}
+                    stroke="#e5e7eb"
+                    strokeWidth={strokeWidth * 0.7}
+                    fill="none"
+                  />
+                  {/* Progress circle */}
+                  <circle
+                    cx="70"
+                    cy="70"
+                    r={radius * 0.7}
+                    stroke={score >= 70 ? "#10b981" : score >= 50 ? "#f59e0b" : "#ef4444"}
+                    strokeWidth={strokeWidth * 0.7}
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeDasharray={circumference * 0.7}
+                    strokeDashoffset={(circumference * 0.7) - (score / 100) * (circumference * 0.7)}
+                    className="transition-all duration-1000 ease-out"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className={`text-2xl font-bold ${score >= 70 ? 'text-green-600' : score >= 50 ? 'text-yellow-600' : 'text-red-600'}`}>
+                      {typeof numeric === 'number' ? Math.round(numeric) : 'N/A'}
+                    </div>
+                    <div className="text-gray-500 text-xs">out of 100</div>
+                  </div>
+                </div>
+              </div>
+              <h2 className="text-xl font-bold text-gray-700 mb-1">Match Score</h2>
+              <p className={`text-xs font-medium ${score >= 70 ? 'text-green-600' : score >= 50 ? 'text-yellow-600' : 'text-red-600'}`}>
+                {score >= 70 ? 'Excellent Match!' : score >= 50 ? 'Good Match' : 'Needs Improvement'}
+              </p>
+            </div>
+
+            {/* Keywords Section */}
+            <div className="space-y-3">
+              <h3 className="text-lg font-bold text-gray-700">Suggested Keywords</h3>
+              <div className="bg-white/60 rounded-2xl p-3 max-h-40 overflow-y-auto">
+                {Array.isArray(keywords) && keywords.length > 0 ? (
+                  <div className="space-y-1">
+                    {keywords.map((kw, i) => (
+                      <div key={i} className="bg-white/80 rounded-lg px-2 py-1 text-xs text-gray-700 shadow-sm">
+                        {kw}
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-4">
+                    <div className="text-2xl mb-1">🎉</div>
+                    <p className="text-gray-600 text-sm font-medium">No missing keywords!</p>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
