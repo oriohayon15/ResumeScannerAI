@@ -3,7 +3,7 @@ import { FileText } from 'lucide-react';
 
 const ApplicationInput = ({value, onChange}) => {
     return (
-            <div className="flex-1 p-8 flex items-center justify-center min-h-screen bg-gradient-to-bl ">
+            <div className="flex-1 p-8 flex items-center justify-center bg-gradient-to-bl ">
                 <div className="w-full max-w-2xl">
                     <div className="relative w-full h-120 rounded-3xl border-2 border-gray-300 bg-white hover:border-blue-400 hover:bg-blue-50 hover:scale-105 hover:shadow-xl transition-all duration-300">
                         <div className="p-6 pb-4">

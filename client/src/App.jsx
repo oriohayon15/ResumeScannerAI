@@ -11,17 +11,18 @@ function App() {
 
   return (
     <>
-      <div>
-      <h1>ResumeScannerAI</h1>
-      <div class='flex'>
-          <div class='w-1/2 p-6'>
+      <div >
+      <h1 className="mb-4 text-center text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">ResumeScannerAI</h1>
+      <p className="text-gray-600 text-lg">Match your resume with job descriptions using AI</p>
+      <div className='flex'>
+          <div className='w-1/2 p-6'>
             <ResumeUpload jobDescription={jobDescription} onResult={setResult} />
           </div>
-          <div class='w-1/2 p-6'>
+          <div className='w-1/2 p-6'>
             <ApplicationInput value={jobDescription} onChange={setJobDescription} />
           </div>
       </div>
-      <div className="p-6">
+      <div>
             <ScoreResults results={result} />
           </div>
       </div>

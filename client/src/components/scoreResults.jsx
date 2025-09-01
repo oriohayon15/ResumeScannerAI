@@ -37,7 +37,7 @@ const ScoreResults = ({ results }) => {
   const strokeDashoffset = circumference - (score / 100) * circumference;
 
   return (
-    <div className="p-6 bg-gradient-to-t from-gray-50 to-gray-100">
+    <div className="p-6">
       <div className="max-w-3xl mx-auto">
         <div className="bg-white/50 backdrop-blur-sm rounded-3xl p-6 shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
@@ -86,7 +86,7 @@ const ScoreResults = ({ results }) => {
 
             {/* Keywords Section */}
             <div className="space-y-3">
-              <h3 className="text-lg font-bold text-gray-700">Suggested Keywords</h3>
+              <h3 className="text-lg font-bold text-gray-700">Suggested Keywords To Add</h3>
               <div className="bg-white/60 rounded-2xl p-3 max-h-40 overflow-y-auto">
                 {Array.isArray(keywords) && keywords.length > 0 ? (
                   <div className="space-y-1">
