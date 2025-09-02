@@ -13,7 +13,7 @@ function App() {
     <>
       <div >
       <h1 className="mb-4 text-center text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">ResumeScannerAI</h1>
-      <p className="text-gray-600 text-lg">Match your resume with job descriptions using AI</p>
+      <p className="text-gray-600 text-lg">Instantly see how your resume stacks up against any job description using AI</p>
       <div className='flex'>
           <div className='w-1/2 p-6'>
             <ResumeUpload jobDescription={jobDescription} onResult={setResult} />
@@ -23,6 +23,7 @@ function App() {
           </div>
       </div>
       <div>
+            <p className="mt-2 text-sm text-gray-500 italic max-w-prose">💡 Note: This is a simplified ATS simulation meant to give you an idea of how your resume might be read. It’s not an exact measure of resume quality. </p>
             <ScoreResults results={result} />
           </div>
       </div>

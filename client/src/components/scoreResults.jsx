@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ScoreResults = ({ results }) => {
-  if (!results) return <div>No results yet</div>;
+  if (!results) return <div></div>;
 
   // 1) Extract score
   let numeric =
