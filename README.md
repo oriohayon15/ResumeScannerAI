@@ -19,6 +19,12 @@ ResumeScannerAI is a full-stack web application that helps job seekers evaluate 
 
 ---
 
+Developer: Ori Ohayon 
+https://www.linkedin.com/in/ori-ohayon/
+https://github.com/oriohayon15
+
+---
+
 **Deployment**  
 I am planning to deploy this project soon. For now, you can run it locally by following the steps below.  
 
@@ -40,12 +46,6 @@ npm install
 npm run dev
 
 **4. Open Browser**
-
----
-
-Developer: Ori Ohayon 
-https://www.linkedin.com/in/ori-ohayon/
-https://github.com/oriohayon15
 
 
 
